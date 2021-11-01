@@ -1,7 +1,11 @@
-﻿namespace Api.Repositories.Abstract
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Api.Repositories.Abstract
 {
-    public interface IDecksRepository: IRepository<Deck>
+    public interface IDecksRepository
     {
-        
+        Task<IEnumerable<Deck>> GetAsync();
+        Task<bool> AddAsync(Deck deck);
     }
 }

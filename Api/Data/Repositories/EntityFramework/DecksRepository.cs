@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Api.Repositories.Abstract;
 
@@ -6,39 +7,19 @@ namespace Api.Repositories.EntityFramework
 {
     public class DecksRepository: IDecksRepository
     {
+        private readonly FlashcardsDbContext _dbContext;
+        public DecksRepository(FlashcardsDbContext dbContext) => 
+            _dbContext = dbContext;
         public async Task<IEnumerable<Deck>> GetAsync()
         {
-            throw new System.NotImplementedException();
+            return _dbContext.Decks;
         }
 
-        public async Task<Deck?> GetByKeyAsync(long key)
+        public async Task<bool> AddAsync(Deck deck)
         {
-            throw new System.NotImplementedException();
+            await _dbContext.AddAsync(deck);
+            return await _dbContext.SaveChangesAsync() > 0;
         }
-
-        public async Task<bool> AddAsync(Deck entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<bool> UpdateAsync(Deck entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<bool> DeleteByKeyAsync(long key)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<bool> DeleteAllAsync()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<int> SaveChangesAsync()
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }
 }
