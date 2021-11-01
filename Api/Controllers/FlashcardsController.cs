@@ -56,5 +56,12 @@ namespace Api.Controllers
                 return BadRequest("Flashcards were not added");
             }
         }
+
+        [HttpGet("getStatistics")]
+        public async Task<string> GetStatistics()
+        {
+            var flashcards = await _flashcardsRepository.GetAsync();
+            return $"{flashcards.Where(flashcard => flashcard.WasMemorized).Count()}/{flashcards.Count()}";
+        }
     }
 }

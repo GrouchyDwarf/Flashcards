@@ -10,12 +10,9 @@ namespace Api.Repositories.EntityFramework
         private readonly FlashcardsDbContext _dbContext;
         public DecksRepository(FlashcardsDbContext dbContext) => 
             _dbContext = dbContext;
-        public async Task<IEnumerable<Deck>> GetAsync()
-        {
-            return _dbContext.Decks;
-        }
+        public async Task<IEnumerable<Deck>> GetAsync() => _dbContext.Decks.ToList();
 
-        public async Task<bool> AddAsync(Deck deck)
+            public async Task<bool> AddAsync(Deck deck)
         {
             await _dbContext.AddAsync(deck);
             return await _dbContext.SaveChangesAsync() > 0;

@@ -28,6 +28,7 @@ namespace Api.Repositories.EntityFramework
 
         public async Task<IEnumerable<Flashcard>> GetFlashcardsInDeckAsync(string deckName) =>
             _dbContext.Flashcards.Where(flashcard => flashcard.Deck.Name == deckName).ToList();
-        
+
+        public async Task<IEnumerable<Flashcard>> GetAsync() => _dbContext.Flashcards.ToList();
     }
 }

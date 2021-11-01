@@ -8,6 +8,7 @@ namespace Api.Repositories.Abstract
         Task<bool> AddRangeAsync(IEnumerable<Flashcard> flashcards);
         Task<bool> UpdateAsync(Flashcard flashCard);
         Task<IEnumerable<Flashcard>> GetFlashcardsInDeckAsync(string deckName);
+        Task<IEnumerable<Flashcard>> GetAsync();
 
     }
 }
